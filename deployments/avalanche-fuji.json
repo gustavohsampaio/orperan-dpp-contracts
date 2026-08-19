@@ -1,0 +1,45 @@
+{
+  "network": "avalanche-fuji",
+  "chainId": 43113,
+  "rpcUrl": "https://api.avax-test.network/ext/bc/C/rpc",
+  "explorer": "https://testnet.snowtrace.io",
+  "deployedAt": "2026-08-18",
+  "note": "First DPP deployment on Avalanche, and the first factory to use EIP-1167 minimal proxies. Testnet; the production chain has not been decided.",
+  "contracts": {
+    "OpaliteDppForwarder": {
+      "address": "0x731b23577ebf80587cd6742afCD2AB801B471d10",
+      "deployer": "0x7B967Fe39a3E035609CaA5dd51Ce7A488BDE27e2",
+      "note": "Trusted forwarder ERC-2771 (meta-tx do mint por-org). Use em FORWARDER_AVALANCHE_FUJI_ADDRESS."
+    },
+    "OpaliteDppSoulboundFactory": {
+      "address": "0x8f8EEC686823b16A665d7F919A9a374FA5FdDe03",
+      "deployer": "0x7B967Fe39a3E035609CaA5dd51Ce7A488BDE27e2",
+      "note": "Factory EIP-1167: clona a implementação abaixo por passaporte. Use em FACTORY_AVALANCHE_FUJI_ADDRESS."
+    },
+    "OpaliteDppSoulbound (implementação)": {
+      "address": "0xF21C7bA4c03237e02bd3466A2c21E791CD2Dc361",
+      "note": "Implementação clonada pela factory, deployada no construtor dela. Travada contra inicialização (o construtor seta _initialized=true); só a factory pode chamar initialize nos clones."
+    }
+  },
+  "smokeTest": {
+    "passed": true,
+    "note": "Ciclo DPP completo on-chain na Fuji: deploySoulbound (clone) -> mint -> setMerkleRoot. contentHash lido on-chain confere com o calculado off-chain.",
+    "assetId": "dpp-fuji-smoke-1787094730579",
+    "sampleSoulbound": "0x079B8f0f8AC57e811fF4383E4A6Eb9B032cAf859",
+    "contentHash": "0xf67e715490e1a6b080f3594e3be8cd4ebc33daceae06849583339591620f3c7f",
+    "merkleRoot": "0xb879b59cef0a3c213abf9234d94bed7396d42f5c11f0ca4a1e18ba174772b723",
+    "deployTx": "0x1c40985909878f59554795b55ed0da346c3f35b81818e3072bb37c34bd17f2f3",
+    "mintTx": "0x01346558545baf4505b8e2f8cc94b8c0e42d5c367b9acf3314890c53519550d5",
+    "reanchorTx": "0xc688b9672799673bf1912da01bdb534b878fa9644e46a36953d045cb8a6d16cb"
+  },
+  "gas": {
+    "note": "Gás REAL medido na Fuji, não em EVM local. Confirma o refactor EIP-1167.",
+    "deploySoulbound": 451253,
+    "deploySoulboundAntesDoRefactor": 2333023,
+    "mint": 107222,
+    "setMerkleRoot": 56894,
+    "cicloDeployMint": 558475,
+    "cicloAntesDoRefactor": 2440030,
+    "reducao": "-78%"
+  }
+}

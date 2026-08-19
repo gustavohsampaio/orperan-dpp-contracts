@@ -1,0 +1,25 @@
+{
+  "name": "opalite-dpp-contracts",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Opalite DPP — on-chain product passport contracts (EIP-1167 minimal proxies)",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "verify-abis": "hardhat run scripts/verify-abis.ts",
+    "deploy:fuji": "hardhat run scripts/deploy.ts --network fuji"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.4.0",
+    "@types/chai": "^4.3.16",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.14.0",
+    "chai": "^4.4.1",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.0",
+    "hardhat": "^2.22.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.0"
+  }
+}

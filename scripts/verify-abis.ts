@@ -1,5 +1,5 @@
 /* Valida que os contratos compilados expõem EXATAMENTE as funções/eventos que a
- * ABI do dpp-api consome (src/blockchain/abis/*.ts). Roda após `compile`.
+ * ABI que o backend consome. Roda após `compile`.
  *   pnpm verify-abis
  * Falha (exit 1) se alguma assinatura esperada não existir no contrato real. */
 import hre from "hardhat";
@@ -7,7 +7,7 @@ import { ethers } from "ethers";
 
 const { artifacts } = hre;
 
-// Assinaturas canônicas que o dpp-api espera (= soulbound.abi.ts / factory.abi.ts).
+// Assinaturas canônicas que o backend espera.
 const EXPECTED = {
   OpaliteDppSoulboundFactory: {
     functions: ["deploySoulbound(string,string,string,string,uint256,string,address,string,uint256,bytes32)"],
@@ -61,7 +61,7 @@ async function main() {
 
   console.log(
     failures === 0
-      ? "\n✅ ABIs do dpp-api casam 100% com os contratos compilados."
+      ? "\n✅ ABIs do backend casam 100% com os contratos compilados."
       : `\n❌ ${failures} assinatura(s) divergente(s) — ajustar contrato ou ABI.`,
   );
   if (failures > 0) process.exitCode = 1;

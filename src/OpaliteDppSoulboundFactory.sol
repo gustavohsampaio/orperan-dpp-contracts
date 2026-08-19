@@ -13,10 +13,9 @@ import "./OpaliteDppSoulbound.sol";
  *         completo: 2.333.023 de gás, ~9,5 KB de code deposit por passaporte.
  *         Com o proxy, ~45.000 — o mesmo passaporte por ~2% do custo.
  *
- *         A assinatura externa e o evento NÃO mudaram: o dpp-api não precisa de
+ *         A assinatura externa e o evento NÃO mudaram: o backend não precisa de
  *         alteração alguma.
- *         A assinatura e o evento casam EXATAMENTE a ABI do dpp-api
- *         (`src/blockchain/abis/factory.abi.ts`):
+ *         A assinatura e o evento casam EXATAMENTE a ABI que o backend consome:
  *           deploySoulbound(string,string,string,string,uint256,string,address,string,uint256,bytes32) -> address
  *           event SoulboundDeployed(address indexed contractAddress, string assetId)
  *

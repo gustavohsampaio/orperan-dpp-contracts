@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/metatx/ERC2771Forwarder.sol";
  *           - a ORG assina um ForwardRequest (EIP-712) com a chave KMS dela;
  *           - o RELAYER da plataforma chama execute(request) e PAGA o gás;
  *           - o Soulbound (ERC2771Context) enxerga _msgSender() == ORG.
- *         A org nunca segura/recebe USDC → fora do escopo PSAV.
+ *         A org nunca segura nem recebe USDC.
  *
  *         Proteções herdadas da OZ: verificação da assinatura EIP-712, nonce
  *         por-remetente (anti-replay) e deadline. O nome do domínio EIP-712 é

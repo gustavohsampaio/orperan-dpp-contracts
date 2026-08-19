@@ -12,14 +12,13 @@ import "@openzeppelin/contracts/utils/Context.sol";
  * @title  OpaliteDppSoulbound
  * @notice Soulbound (ERC-1155 intransferível) do Passaporte Digital de Produto (DPP).
  *         Cada deploy = UM passaporte (TOKEN_ID = 1). É atestação, não ativo
- *         financeiro: não-transferível, sem valor → fora do escopo PSAV
- *         (ver docs/dpp-custodia-psav-analise.md).
+ *         financeiro: não-transferível e sem valor.
  *
- *         DIVERGÊNCIA DELIBERADA vs OpaliteSoulbound (opalite-api, deprecated):
+ *         DIVERGÊNCIA DELIBERADA vs uma versão anterior deste contrato:
  *         `revoke` ancora um `uint8 reasonCode` NUMÉRICO (nunca texto livre, que
  *         seria imutável on-chain e poderia carregar PII). O motivo humano fica
- *         off-chain (AuditLog). Esta é a fonte de verdade casada com a ABI do
- *         dpp-api (`src/blockchain/abis/soulbound.abi.ts`).
+ *         off-chain, no log de auditoria. Este contrato é a fonte de verdade
+ *         da ABI que o backend consome.
  *
  *         MODELO DE DEPLOY (EIP-1167): este contrato NÃO é deployado por
  *         passaporte. A factory deploya UMA implementação e cria um *minimal
@@ -70,7 +69,7 @@ contract OpaliteDppSoulbound is ERC1155, ERC1155Supply, ERC1155Pausable, AccessC
     // ─── Eventos ────────────────────────────────────────────────────────────
     event ProofMinted(address indexed to, uint256 amount, address indexed minter);
     event ProofBurned(address indexed from, uint256 amount, address indexed burner);
-    // reasonCode numérico (DPP V2) — casa a ABI do dpp-api. Motivo humano off-chain.
+    // reasonCode numérico (DPP V2). O motivo humano fica off-chain.
     event ProofRevoked(address indexed from, uint256 amount, uint8 reasonCode);
     event LinkedAssetUpdated(string oldAssetId, string newAssetId);
     event ContentReanchored(bytes32 indexed oldRoot, bytes32 indexed newRoot, uint64 version, uint256 count);
@@ -148,7 +147,7 @@ contract OpaliteDppSoulbound is ERC1155, ERC1155Supply, ERC1155Pausable, AccessC
     }
 
     // ─── Mint ───────────────────────────────────────────────────────────────
-    // Assinatura casada com a ABI do dpp-api: mint(to, tokenId, amount, data).
+    // Assinatura casada com a ABI do backend: mint(to, tokenId, amount, data).
     // tokenId é exigido == TOKEN_ID (single-token). `data` repassado ao _mint.
     function mint(
         address to,

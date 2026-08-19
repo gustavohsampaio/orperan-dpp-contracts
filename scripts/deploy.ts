@@ -1,7 +1,7 @@
 /* Deploy do Forwarder + Factory do DPP. Uso:
  *   npm run deploy:fuji    (Avalanche testnet, chainId 43113)
  * A chave vem de DEPLOYER_PRIVATE_KEY_<REDE> ou, na falta, DEPLOYER_PRIVATE_KEY.
- * Saída: os nomes exatos das envs a colar no .env do dpp-api, por rede.
+ * Saída: os nomes exatos das envs a colar no .env do backend, por rede.
  *
  * A factory deploya a implementação do Soulbound no próprio construtor e passa
  * a clonar por EIP-1167 — por isso ela custa mais e cada passaporte custa ~79%
@@ -32,7 +32,7 @@ async function main() {
   const factoryAddr = await factory.getAddress();
   console.log(`✅ OpaliteDppSoulboundFactory: ${factoryAddr}`);
 
-  // Prefixo das envs por rede — casa com NETWORK_DEFINITIONS do dpp-api
+  // Prefixo das envs por rede, casando com o registry de redes do backend
   // (src/blockchain/networks.ts).
   const ENV_PREFIX: Record<string, string> = {
     fuji: "AVALANCHE_FUJI",
@@ -43,7 +43,7 @@ async function main() {
   console.log(`   └─ implementação clonada: ${implAddr}`);
 
   if (prefix) {
-    console.log("\nCole no .env do dpp-api:");
+    console.log("\nCole no .env do backend:");
     console.log(`   FORWARDER_${prefix}_ADDRESS=${forwarderAddr}`);
     console.log(`   FACTORY_${prefix}_ADDRESS=${factoryAddr}`);
   } else {

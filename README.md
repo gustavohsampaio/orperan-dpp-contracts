@@ -1,10 +1,10 @@
-# Opalite DPP — on-chain product passport contracts
+# Orperan DPP — on-chain product passport contracts
 
 Every physical lot gets its own contract: an issuer-signed content hash, a one-way
 lifecycle, and Merkle-anchored batches of events as the lot moves. The payload stays
 off-chain — only a 32-byte hash and the issuer's authority reach the ledger.
 
-Built by [Opalite](https://opalitetrust.com) for Brazil's agro-export economy, where the
+Built by [Orperan](https://orperan.com) for Brazil's agro-export economy, where the
 EU Deforestation Regulation starts requiring proof of origin on 30 December 2026.
 
 These contracts are **EVM and chain-agnostic**. Avalanche Fuji is where they run today.
@@ -19,7 +19,7 @@ chainId `43113` · all three source-verified on Snowtrace
 |---|---|
 | `OpaliteDppSoulboundFactory` | [`0x8f8EEC686823b16A665d7F919A9a374FA5FdDe03`](https://testnet.snowtrace.io/address/0x8f8EEC686823b16A665d7F919A9a374FA5FdDe03#code) |
 | `OpaliteDppSoulbound` (implementation) | [`0xF21C7bA4c03237e02bd3466A2c21E791CD2Dc361`](https://testnet.snowtrace.io/address/0xF21C7bA4c03237e02bd3466A2c21E791CD2Dc361#code) |
-| `OpaliteDppForwarder` (ERC-2771) | [`0x731b23577ebf80587cd6742afCD2AB801B471d10`](https://testnet.snowtrace.io/address/0x731b23577ebf80587cd6742afCD2AB801B471d10#code) |
+| `DppForwarder` (ERC-2771) | [`0x731b23577ebf80587cd6742afCD2AB801B471d10`](https://testnet.snowtrace.io/address/0x731b23577ebf80587cd6742afCD2AB801B471d10#code) |
 | Sample passport (a clone) | [`0x079B8f0f8AC57e811fF4383E4A6Eb9B032cAf859`](https://testnet.snowtrace.io/address/0x079B8f0f8AC57e811fF4383E4A6Eb9B032cAf859) |
 
 ---

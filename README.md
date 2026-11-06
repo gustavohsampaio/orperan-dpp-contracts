@@ -1,4 +1,4 @@
-# Orperan DPP — on-chain product passport contracts
+# Orperan(Opalite) DPP — on-chain product passport contracts
 
 Every physical lot gets its own contract: an issuer-signed content hash, a one-way
 lifecycle, and Merkle-anchored batches of events as the lot moves. The payload stays
